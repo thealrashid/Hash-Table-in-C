@@ -13,12 +13,15 @@ size_t int_hash(const void *key) {
 }
 
 
-int user_compare(const void *a, const void *b) {
-    return strcmp((char *)a, (char *)b);
+int int_compare(const void *a, const void *b) {
+    int int_a = *(const int *)a;
+    int int_b = *(const int *)b;
+    return (int_a > int_b) - (int_a < int_b);
 }
 
+
 int main() {
-    HashTable *ht = hash_table_create(20, int_hash, user_compare, NULL, NULL);
+    HashTable *ht = hash_table_create(20, int_hash, int_compare, NULL, NULL);
 
     int *messi = (int *)malloc(sizeof(int));
     *messi = 10;
